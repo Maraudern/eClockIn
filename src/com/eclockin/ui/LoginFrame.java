@@ -13,53 +13,53 @@ public class LoginFrame extends JFrame {
 
     private StudentDao studentDao = new StudentDao();
 
-    public LoginFrame() {
+    public LoginFrame(String title) {
+        setTitle(title);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setResizable(false); // ä¸å¯æ”¹å˜çª—å£å¤§å°
+        setResizable(false); // ²»¿É¸Ä±ä´°¿Ú´óÐ¡
         setBounds(100, 100, 360, 200);
-        setLocationRelativeTo(null); // é»˜è®¤å±…ä¸­æ˜¾ç¤º
+        setLocationRelativeTo(null); // Ä¬ÈÏ¾ÓÖÐÏÔÊ¾
 
         JPanel rootPanel = new JPanel();
         rootPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(rootPanel);
         rootPanel.setLayout(null);
-        rootPanel.setOpaque(true); // èƒŒæ™¯è®¾ä¸ºä¸é€æ˜Ž
-        rootPanel.setBackground(Color.white); // èƒŒæ™¯ç™½è‰²
-        rootPanel.setForeground(Color.black); // å‰æ™¯é»‘è‰²
-        rootPanel.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
-        this.setContentPane(rootPanel); // æ·»åŠ æ ¹å®¹å™¨åˆ°çª—å£
-        this.setTitle("ç™»å½•");
+        rootPanel.setOpaque(true); // ±³¾°ÉèÎª²»Í¸Ã÷
+        rootPanel.setBackground(Color.white); // ±³¾°°×É«
+        rootPanel.setForeground(Color.black); // Ç°¾°ºÚÉ«
+        rootPanel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+        this.setContentPane(rootPanel); // Ìí¼Ó¸ùÈÝÆ÷µ½´°¿Ú
+        this.setTitle("µÇÂ¼");
 
-        JLabel lblNewLabel = new JLabel("å­¦å·:");
-        lblNewLabel.setBounds(60, 20, 43, 15);
+        JLabel lblNewLabel = new JLabel("Ñ§ºÅ:");
+        lblNewLabel.setBounds(60, 30, 43, 15);
 
         JTextField stunoText = new JTextField();
-        stunoText.setBounds(100, 17, 160, 21);
+        stunoText.setBounds(100, 27, 160, 21);
 
-        JLabel lblNewLabel_1 = new JLabel("å¯†ç :");
+        JLabel lblNewLabel_1 = new JLabel("ÃÜÂë:");
         lblNewLabel_1.setBounds(60, 60, 43, 15);
 
         JTextField passwordText = new JTextField();
         passwordText.setBounds(100, 57, 160, 21);
 
-        JButton button1 = new JButton("ç™»å½•");
+        JButton button1 = new JButton("µÇÂ¼");
         button1.setBounds(110, 90, 60, 30);
         button1.addActionListener((e) -> {
             String stuno = stunoText.getText();
             String password = passwordText.getText();
             boolean student = studentDao.queryLogin(stuno, password);
             if (student) {
-                JOptionPane.showMessageDialog(contentPane, "ç™»å½•æˆåŠŸ", "ç³»ç»Ÿæç¤º", JOptionPane.WARNING_MESSAGE);
-                JFrame frame1 = new MainFrame();
-                frame1.setTitle("Eæ‰“å¡");
-                this.setVisible(false);
+                JOptionPane.showMessageDialog(contentPane, "µÇÂ¼³É¹¦", "ÏµÍ³ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
+                new MainFrame("E´ò¿¨");
+                this.dispose();
             } else {
-                JOptionPane.showMessageDialog(contentPane, "è´¦æˆ·æˆ–è€…ç”¨æˆ·åè¾“å…¥é”™è¯¯", "ç³»ç»Ÿæç¤º", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(contentPane, "ÕË»§»òÕßÓÃ»§ÃûÊäÈë´íÎó", "ÏµÍ³ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
                 return;
             }
         });
 
-        JButton button2 = new JButton("æ³¨å†Œ");
+        JButton button2 = new JButton("×¢²á");
         button2.setBounds(200, 90, 60, 30);
         button2.addActionListener((e) -> {
             JFrame loginF = new AddView(1);
@@ -73,5 +73,7 @@ public class LoginFrame extends JFrame {
         rootPanel.add(lblNewLabel);
         rootPanel.add(button1);
         rootPanel.add(button2);
+
+        this.setVisible(true);
     }
 }

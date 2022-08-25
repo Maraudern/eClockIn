@@ -6,11 +6,11 @@ import java.util.ResourceBundle;
 public class JDBCUtils {
 
     /*
-     * æ•°æ®åº“è¿æ¥
+     * Êı¾İ¿âÁ¬½Ó
      */
     public static Connection getConnection() {
 
-        //è·å–æ–‡ä»¶å‚æ•°
+        //»ñÈ¡ÎÄ¼ş²ÎÊı
         ResourceBundle bundle = ResourceBundle.getBundle("jdbc");
         String DRIVER = bundle.getString("driver");
         String URL = bundle.getString("url");
@@ -19,9 +19,9 @@ public class JDBCUtils {
 
         Connection con = null;
         try {
-            // åŠ è½½é©±åŠ¨
+            // ¼ÓÔØÇı¶¯
             Class.forName(DRIVER);
-            // è·å–è¿æ¥å¯¹è±¡
+            // »ñÈ¡Á¬½Ó¶ÔÏó
             con = DriverManager.getConnection(URL, USER, PWD);
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
@@ -34,10 +34,10 @@ public class JDBCUtils {
     }
 
     /**
-     * å…³é—­è¿æ¥èµ„æº
-     * @param con	è¿æ¥å¯¹è±¡
-     * @param pstmt	é¢„ç¼–è¯‘å¯¹è±¡
-     * @param rs	ç»“æœé›†
+     * ¹Ø±ÕÁ¬½Ó×ÊÔ´
+     * @param con	Á¬½Ó¶ÔÏó
+     * @param pstmt	Ô¤±àÒë¶ÔÏó
+     * @param rs	½á¹û¼¯
      */
     public static void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
 

@@ -9,11 +9,11 @@ import com.eclockin.entity.Student;
 import com.eclockin.util.JDBCUtils;
 
 /**
- * å­¦ç”Ÿæ•°æ®åº“æ“ä½œ
+ * Ñ§ÉúÊı¾İ¿â²Ù×÷
  */
 public class StudentDao {
 
-    //æŸ¥è¯¢å­¦ç”Ÿåˆ—è¡¨
+    //²éÑ¯Ñ§ÉúÁĞ±í
     public List<Student> queryList(String name) {
 
         List<Student> list = new ArrayList<Student>();
@@ -57,7 +57,7 @@ public class StudentDao {
 
     }
 
-    //ä¿å­˜å­¦ç”Ÿä¿¡æ¯
+    //±£´æÑ§ÉúĞÅÏ¢
     public boolean save(Student student) {
 
         Connection con = null;
@@ -88,7 +88,7 @@ public class StudentDao {
     }
 
 
-    //ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯
+    //ĞŞ¸ÄÑ§ÉúĞÅÏ¢
     public boolean update(Student student) {
 
         Connection con = null;
@@ -118,7 +118,7 @@ public class StudentDao {
 
     }
 
-    //åˆ é™¤å­¦ç”Ÿä¿¡æ¯
+    //É¾³ıÑ§ÉúĞÅÏ¢
     public boolean delete(int id) {
 
         Connection con = null;
@@ -142,7 +142,7 @@ public class StudentDao {
 
     }
 
-    //æ ¹æ®IDæŸ¥è¯¢å­¦ç”Ÿ
+    //¸ù¾İID²éÑ¯Ñ§Éú
     public Student getById(int id) {
 
         Student student = null;
@@ -175,7 +175,7 @@ public class StudentDao {
 
     }
 
-    //ç™»å½•è´¦å·
+    //µÇÂ¼ÕËºÅ
     public boolean queryLogin(String stuno, String password) {
 
         ResultSet rs = null;
@@ -190,7 +190,7 @@ public class StudentDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            //å…³é—­è¿æ¥
+            //¹Ø±ÕÁ¬½Ó
             if (rs != null) {
                 try {
                     rs.close();

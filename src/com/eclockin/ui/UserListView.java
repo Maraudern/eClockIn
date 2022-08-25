@@ -29,23 +29,13 @@ public class UserListView extends JFrame {
 
     private StudentDao studentDao = new StudentDao();
 
-    //å¯åŠ¨å­¦ç”Ÿåˆ—è¡¨
-    public static void main(String[] args) {
-        try {
-            UserListView frame = new UserListView();
-            frame.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //åˆ›å»ºæ¡†æ¶
+    //´´½¨¿ò¼Ü
     public UserListView() {
-
-        setTitle("å­¦ç”Ÿåˆ—è¡¨");
+        setVisible(true);
+        setTitle("Ñ§ÉúÁĞ±í");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 337);
-        setResizable(false); // ä¸å¯æ”¹å˜çª—å£å¤§å°
+        setResizable(false); // ²»¿É¸Ä±ä´°¿Ú´óĞ¡
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
@@ -57,15 +47,15 @@ public class UserListView extends JFrame {
         scrollPane.setBounds(10, 39, 764, 232);
         contentPane.add(scrollPane);
 
-        Object[] columns = {"ID", "å­¦å·", "å¯†ç " ,"å§“å", "å¹´çº§", "æ·»åŠ æ—¶é—´"};// å­—æ®µ
-        Object[][] data = null;// éœ€è¦å±•ç¤ºçš„æ•°æ®
+        Object[] columns = {"ID", "Ñ§ºÅ", "ÃÜÂë" ,"ĞÕÃû", "Äê¼¶", "Ìí¼ÓÊ±¼ä"};// ×Ö¶Î
+        Object[][] data = null;// ĞèÒªÕ¹Ê¾µÄÊı¾İ
         DefaultTableModel model = new DefaultTableModel(data, columns);
         table = new JTable(model);
-        //åŠ è½½å­¦ç”Ÿæ•°æ®
+        //¼ÓÔØÑ§ÉúÊı¾İ
         load(null);
         scrollPane.setViewportView(table);
 
-        JLabel lblNewLabel = new JLabel("å§“å");
+        JLabel lblNewLabel = new JLabel("ĞÕÃû");
         lblNewLabel.setBounds(10, 10, 42, 15);
         contentPane.add(lblNewLabel);
 
@@ -74,8 +64,8 @@ public class UserListView extends JFrame {
         contentPane.add(nameText);
         nameText.setColumns(10);
 
-        //æŸ¥è¯¢æŒ‰é’®
-        JButton searchBtn = new JButton("æŸ¥è¯¢");
+        //²éÑ¯°´Å¥
+        JButton searchBtn = new JButton("²éÑ¯");
         searchBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 load(nameText.getText());
@@ -84,8 +74,8 @@ public class UserListView extends JFrame {
         searchBtn.setBounds(169, 8, 63, 23);
         contentPane.add(searchBtn);
 
-        //æ·»åŠ æŒ‰é’®
-        JButton addBtn = new JButton("æ·»åŠ ");
+        //Ìí¼Ó°´Å¥
+        JButton addBtn = new JButton("Ìí¼Ó");
         addBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AddView view = new AddView(0);
@@ -95,14 +85,14 @@ public class UserListView extends JFrame {
         addBtn.setBounds(365, 8, 63, 23);
         contentPane.add(addBtn);
 
-        //ä¿®æ”¹æŒ‰é’®
-        JButton updateBtn = new JButton("ä¿®æ”¹");
+        //ĞŞ¸Ä°´Å¥
+        JButton updateBtn = new JButton("ĞŞ¸Ä");
         updateBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // è·å–é€‰ä¸­è¡Œ
+                // »ñÈ¡Ñ¡ÖĞĞĞ
                 int row = table.getSelectedRow();
                 if (row < 0) {
-                    JOptionPane.showMessageDialog(contentPane, "è¯·é€‰æ‹©ä¸€æ¡è®°å½•", "ç³»ç»Ÿæç¤º", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "ÇëÑ¡ÔñÒ»Ìõ¼ÇÂ¼", "ÏµÍ³ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 int id = Integer.valueOf(table.getValueAt(row, 0).toString());
@@ -113,26 +103,26 @@ public class UserListView extends JFrame {
         });
         updateBtn.setBounds(438, 8, 63, 23);
 
-        //åˆ é™¤æŒ‰é’®
-        JButton deleteBtn = new JButton("åˆ é™¤");
+        //É¾³ı°´Å¥
+        JButton deleteBtn = new JButton("É¾³ı");
         deleteBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // è·å–é€‰ä¸­è¡Œ
+                // »ñÈ¡Ñ¡ÖĞĞĞ
                 int row = table.getSelectedRow();
                 if (row < 0) {
-                    JOptionPane.showMessageDialog(contentPane, "è¯·é€‰æ‹©ä¸€æ¡è®°å½•", "ç³»ç»Ÿæç¤º", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "ÇëÑ¡ÔñÒ»Ìõ¼ÇÂ¼", "ÏµÍ³ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
-                int result = JOptionPane.showConfirmDialog(contentPane, "ç¡®è®¤åˆ é™¤è¯¥å­¦ç”Ÿå—ï¼Ÿ", "æç¤º",
+                int result = JOptionPane.showConfirmDialog(contentPane, "È·ÈÏÉ¾³ı¸ÃÑ§ÉúÂğ£¿", "ÌáÊ¾",
                         JOptionPane.YES_NO_OPTION);
                 if (result == 0) {
                     int id = Integer.valueOf(table.getValueAt(row, 0).toString());
                     boolean flag = studentDao.delete(id);
                     if (flag) {
-                        JOptionPane.showMessageDialog(contentPane, "åˆ é™¤æˆåŠŸ!");
+                        JOptionPane.showMessageDialog(contentPane, "É¾³ı³É¹¦!");
                         load(null);
                     } else {
-                        JOptionPane.showMessageDialog(contentPane, "æ“ä½œå¤±è´¥", "ç³»ç»Ÿæç¤º", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(contentPane, "²Ù×÷Ê§°Ü", "ÏµÍ³ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
 
                     }
                 }
@@ -142,14 +132,25 @@ public class UserListView extends JFrame {
         deleteBtn.setBounds(511, 8, 63, 23);
         contentPane.add(deleteBtn);
         contentPane.add(updateBtn);
+
+        //·µ»Ø°´Å¥
+        JButton backBtn = new JButton("·µ»Ø");
+        backBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new MainFrame("E´ò¿¨");
+                dispose();
+            }
+        });
+        backBtn.setBounds(700, 8, 63, 23);
+        contentPane.add(backBtn);
     }
 
-    // æ ¹æ®å¡«å……è¡¨æ ¼æ•°æ®
+    // ¸ù¾İÌî³ä±í¸ñÊı¾İ
     public void load(String name) {
         List<Student> list = studentDao.queryList(name);
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
-        tableModel.setRowCount(0);// æ¸…é™¤åŸæœ‰è¡Œ
-        // å¡«å……æ•°æ®
+        tableModel.setRowCount(0);// Çå³ıÔ­ÓĞĞĞ
+        // Ìî³äÊı¾İ
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (Student item : list) {
             String[] arr = new String[6];
@@ -159,7 +160,7 @@ public class UserListView extends JFrame {
             arr[3] = item.getName();
             arr[4] = item.getGrade();
             arr[5] = sdf.format(item.getCreatTime());
-            // æ·»åŠ æ•°æ®åˆ°è¡¨æ ¼
+            // Ìí¼ÓÊı¾İµ½±í¸ñ
             tableModel.addRow(arr);
         }
     }

@@ -1,6 +1,7 @@
 package com.eclockin.ui;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -8,92 +9,98 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-/**
- * ä¸»ç•Œé¢
- */
 public class MainFrame extends JFrame {
-
-    //å¯åŠ¨eæ‰“å¡ç•Œé¢
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    MainFrame frame = new MainFrame();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    public MainFrame() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // å…³é—­å³é€€å‡º
-        this.setSize(360, 750); // è®¾ç½®å®½é«˜
-        this.setResizable(false); // ä¸å¯æ”¹å˜çª—å£å¤§å°
-        this.setLocationRelativeTo(null); // é»˜è®¤å±…ä¸­æ˜¾ç¤º
+    public MainFrame(String title) {
+        this.setTitle(title);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // ¹Ø±Õ¼´ÍË³ö
+        this.setSize(360, 750); // ÉèÖÃ¿í¸ß
+        this.setResizable(false); // ²»¿É¸Ä±ä´°¿Ú´óĞ¡
+        this.setLocationRelativeTo(null); // Ä¬ÈÏ¾ÓÖĞÏÔÊ¾
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(null);
         rootPanel.setBounds(0, 200, 360, 750);
-        rootPanel.setOpaque(true); // èƒŒæ™¯è®¾ä¸ºä¸é€æ˜
-        rootPanel.setBackground(Color.white); // èƒŒæ™¯ç™½è‰²
-        rootPanel.setForeground(Color.black); // å‰æ™¯é»‘è‰²
-        rootPanel.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
-        this.setContentPane(rootPanel); // æ·»åŠ æ ¹å®¹å™¨åˆ°çª—å£
+        rootPanel.setOpaque(true); // ±³¾°ÉèÎª²»Í¸Ã÷
+        rootPanel.setBackground(Color.white); // ±³¾°°×É«
+        rootPanel.setForeground(Color.black); // Ç°¾°ºÚÉ«
+        rootPanel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+        this.setContentPane(rootPanel); // Ìí¼Ó¸ùÈİÆ÷µ½´°¿Ú
 
-        // é¡¶éƒ¨æ–‡æœ¬
+        JMenuBar menuBar1 = new JMenuBar();
+        this.setJMenuBar(menuBar1);
+        JMenu menu1 = new JMenu("²Ëµ¥");
+        menuBar1.add(menu1);
+        JMenuItem menuItem1 = new JMenuItem("ÀúÊ·¼ÇÂ¼");
+        JMenuItem menuItem2 = new JMenuItem("ÍË³öµÇÂ¼");
+        JMenuItem menuItem3 = new JMenuItem("ÕËºÅ¹ÜÀí");
+        menu1.add(menuItem1);
+        menu1.add(menuItem2);
+        menu1.add(menuItem3);
+        menu1.setBounds(0, 0, 360, 20);
+        menuItem2.addActionListener((e)->{
+            new LoginFrame("µÇÂ¼");
+            this.dispose();
+        });
+        menuItem3.addActionListener((e)->{
+            new UserListView();
+            this.dispose();
+        });
+
+        // ¶¥²¿ÎÄ±¾
         JLabel label1 = new JLabel();
-        label1.setText("æ¯æ—¥å¥åº·æ‰“å¡");
-        label1.setHorizontalAlignment(0); // æ°´å¹³å±…ä¸­å¯¹é½
-        label1.setVerticalAlignment(0); // å‚ç›´å±…ä¸­å¯¹é½
-        label1.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 16));
-        label1.setBounds(0, 0, 360, 50);
+        label1.setText("Ã¿ÈÕ½¡¿µ´ò¿¨");
+        label1.setHorizontalAlignment(0); // Ë®Æ½¾ÓÖĞ¶ÔÆë
+        label1.setVerticalAlignment(0); // ´¹Ö±¾ÓÖĞ¶ÔÆë
+        label1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 14));
+        label1.setBounds(0, 0, 360, 30);
         rootPanel.add(label1);
 
-        // åŸºæœ¬ä¿¡æ¯
+        // »ù±¾ĞÅÏ¢
         JLabel label2 = new JLabel();
-        label2.setText("  åŸºæœ¬ä¿¡æ¯");
+        label2.setText("  »ù±¾ĞÅÏ¢");
         label2.setOpaque(true);
         label2.setBackground(Color.LIGHT_GRAY);
-        label2.setBounds(0, 50, 360, 20);
+        label2.setBounds(0, 30, 360, 20);
 
         JLabel label3 = new JLabel();
-        label3.setText("å§“å");
-        label3.setBounds(10, 70, 100, 30);
+        label3.setText("ĞÕÃû");
+        label3.setBounds(10, 50, 100, 30);
         JLabel label4 = new JLabel();
-        label4.setText("å­¦å·");
-        label4.setBounds(10, 100, 100, 30);
+        label4.setText("Ñ§ºÅ");
+        label4.setBounds(10, 80, 100, 30);
         JLabel label5 = new JLabel();
-        label5.setText("æˆ·ç±æ‰€åœ¨åœ°");
-        label5.setBounds(10, 130, 100, 30);
+        label5.setText("»§¼®ËùÔÚµØ");
+        label5.setBounds(10, 110, 100, 30);
         JLabel label6 = new JLabel();
-        label6.setText("å½“å‰ä½å€");
-        label6.setBounds(10, 160, 100, 30);
+        label6.setText("µ±Ç°×¡Ö·");
+        label6.setBounds(10, 140, 100, 30);
         JLabel label7 = new JLabel();
-        label7.setText("æ‰€åœ¨æ ¡åŒº");
-        label7.setBounds(10, 190, 100, 30);
+        label7.setText("ËùÔÚĞ£Çø");
+        label7.setBounds(10, 170, 100, 30);
         JLabel label8 = new JLabel();
-        label8.setText("æ‰“å¡ä½ç½®");
-        label8.setBounds(10, 220, 100, 30);
+        label8.setText("´ò¿¨Î»ÖÃ");
+        label8.setBounds(10, 200, 100, 30);
 
         JTextField textField1 = new JTextField();
-        textField1.setBounds(110, 70, 230, 30);
+        textField1.setBounds(110, 50, 230, 30);
         JTextField textField2 = new JTextField();
-        textField2.setBounds(110, 100, 230, 30);
+        textField2.setBounds(110, 80, 230, 30);
         JTextField textField3 = new JTextField();
-        textField3.setBounds(110, 130, 230, 30);
+        textField3.setBounds(110, 110, 230, 30);
         JTextField textField4 = new JTextField();
-        textField4.setBounds(110, 160, 230, 30);
+        textField4.setBounds(110, 140, 230, 30);
         JComboBox<String> comboBox1 = new JComboBox<>();
-        comboBox1.setBounds(110, 190, 230, 30);
-        comboBox1.addItem("ä¸‹æ²™æ ¡åŒº");
-        comboBox1.addItem("å—æµ”æ ¡åŒº");
+        comboBox1.setBounds(110, 170, 230, 30);
+        comboBox1.addItem("ÏÂÉ³Ğ£Çø");
+        comboBox1.addItem("ÄÏä±Ğ£Çø");
         JTextField textField5 = new JTextField();
-        textField5.setBounds(110, 220, 230, 30);
+        textField5.setBounds(110, 200, 230, 30);
 
         rootPanel.add(label2);
         rootPanel.add(label3);
@@ -109,24 +116,24 @@ public class MainFrame extends JFrame {
         rootPanel.add(comboBox1);
         rootPanel.add(textField5);
 
-        // ä»Šæ—¥å¥åº·ä¿¡æ¯
+        // ½ñÈÕ½¡¿µĞÅÏ¢
         JLabel label9 = new JLabel();
-        label9.setText("  ä»Šæ—¥å¥åº·ä¿¡æ¯");
+        label9.setText("  ½ñÈÕ½¡¿µĞÅÏ¢");
         label9.setOpaque(true);
         label9.setBackground(Color.LIGHT_GRAY);
-        label9.setBounds(0, 250, 360, 20);
+        label9.setBounds(0, 230, 360, 20);
 
         JLabel label10 = new JLabel();
-        label10.setText("æ™¨æ£€ä½“æ¸©:");
-        label10.setBounds(10, 270, 350, 30);
-        JRadioButton radioButton1 = new JRadioButton("37â„ƒä»¥ä¸‹");
-        radioButton1.setBounds(10, 300, 350, 30);
+        label10.setText("³¿¼ìÌåÎÂ:");
+        label10.setBounds(10, 250, 350, 30);
+        JRadioButton radioButton1 = new JRadioButton("37¡æÒÔÏÂ");
+        radioButton1.setBounds(10, 280, 350, 30);
         radioButton1.setBackground(Color.white);
-        JRadioButton radioButton2 = new JRadioButton("37â„ƒ~37.2â„ƒ");
-        radioButton2.setBounds(10, 330, 350, 30);
+        JRadioButton radioButton2 = new JRadioButton("37¡æ~37.2¡æ");
+        radioButton2.setBounds(10, 310, 350, 30);
         radioButton2.setBackground(Color.white);
-        JRadioButton radioButton3 = new JRadioButton("37.2â„ƒä»¥ä¸Š");
-        radioButton3.setBounds(10, 360, 350, 30);
+        JRadioButton radioButton3 = new JRadioButton("37.2¡æÒÔÉÏ");
+        radioButton3.setBounds(10, 340, 350, 30);
         radioButton3.setBackground(Color.white);
         ButtonGroup buttonGroup1 = new ButtonGroup();
         buttonGroup1.add(radioButton1);
@@ -134,28 +141,28 @@ public class MainFrame extends JFrame {
         buttonGroup1.add(radioButton3);
 
         JLabel label11 = new JLabel();
-        label11.setText("èº«ä½“çŠ¶å†µ:");
-        label11.setBounds(10, 390, 350, 30);
-        JCheckBox checkBox1 = new JCheckBox("æ­£å¸¸");
-        checkBox1.setBounds(10, 420, 350, 30);
+        label11.setText("ÉíÌå×´¿ö:");
+        label11.setBounds(10, 370, 350, 30);
+        JCheckBox checkBox1 = new JCheckBox("Õı³£");
+        checkBox1.setBounds(10, 400, 350, 30);
         checkBox1.setBackground(Color.white);
-        JCheckBox checkBox2 = new JCheckBox("æ„Ÿå†’");
-        checkBox2.setBounds(10, 450, 350, 30);
+        JCheckBox checkBox2 = new JCheckBox("¸ĞÃ°");
+        checkBox2.setBounds(10, 430, 350, 30);
         checkBox2.setBackground(Color.white);
-        JCheckBox checkBox3 = new JCheckBox("å‘çƒ§");
-        checkBox3.setBounds(10, 480, 350, 30);
+        JCheckBox checkBox3 = new JCheckBox("·¢ÉÕ");
+        checkBox3.setBounds(10, 460, 350, 30);
         checkBox3.setBackground(Color.white);
-        JCheckBox checkBox4 = new JCheckBox("å‘¼å¸å›°éš¾");
-        checkBox4.setBounds(10, 510, 350, 30);
+        JCheckBox checkBox4 = new JCheckBox("ºôÎüÀ§ÄÑ");
+        checkBox4.setBounds(10, 490, 350, 30);
         checkBox4.setBackground(Color.white);
-        JCheckBox checkBox5 = new JCheckBox("å’½ç—›,å’³å—½");
-        checkBox5.setBounds(10, 540, 350, 30);
+        JCheckBox checkBox5 = new JCheckBox("ÑÊÍ´,¿ÈËÔ");
+        checkBox5.setBounds(10, 520, 350, 30);
         checkBox5.setBackground(Color.white);
-        JCheckBox checkBox6 = new JCheckBox("è…¹æ³»");
-        checkBox6.setBounds(10, 570, 350, 30);
+        JCheckBox checkBox6 = new JCheckBox("¸¹Ğº");
+        checkBox6.setBounds(10, 550, 350, 30);
         checkBox6.setBackground(Color.white);
-        JCheckBox checkBox7 = new JCheckBox("å…¶å®ƒ");
-        checkBox7.setBounds(10, 600, 350, 30);
+        JCheckBox checkBox7 = new JCheckBox("ÆäËü");
+        checkBox7.setBounds(10, 580, 350, 30);
         checkBox7.setBackground(Color.white);
 
         rootPanel.add(label9);
@@ -172,22 +179,22 @@ public class MainFrame extends JFrame {
         rootPanel.add(checkBox6);
         rootPanel.add(checkBox7);
 
-        // çœŸå®æ€§æ‰¿è¯º
+        // ÕæÊµĞÔ³ĞÅµ
         JLabel label12 = new JLabel();
-        label12.setText("  çœŸå®æ€§æ‰¿è¯º");
+        label12.setText("  ÕæÊµĞÔ³ĞÅµ");
         label12.setOpaque(true);
         label12.setBackground(Color.LIGHT_GRAY);
-        label12.setBounds(0, 630, 360, 20);
-        JCheckBox checkBox8 = new JCheckBox("æœ¬äººæ‰¿è¯ºä»¥ä¸Šæ•°æ®çœŸå®æ€§");
-        checkBox8.setBounds(10, 650, 350, 30);
+        label12.setBounds(0, 610, 360, 20);
+        JCheckBox checkBox8 = new JCheckBox("±¾ÈË³ĞÅµÒÔÉÏÊı¾İÕæÊµĞÔ");
+        checkBox8.setBounds(10, 630, 350, 30);
         checkBox8.setBackground(Color.white);
 
         rootPanel.add(label12);
         rootPanel.add(checkBox8);
 
-        // æäº¤
-        JButton button1=new JButton("æäº¤");
-        button1.setBounds(150, 680, 60, 30);
+        // Ìá½»
+        JButton button1 = new JButton("Ìá½»");
+        button1.setBounds(150, 660, 60, 25);
         button1.setEnabled(false);
 
         checkBox8.addActionListener((e) -> {
@@ -195,7 +202,6 @@ public class MainFrame extends JFrame {
         });
 
         rootPanel.add(button1);
-
         this.setVisible(true);
     }
 }

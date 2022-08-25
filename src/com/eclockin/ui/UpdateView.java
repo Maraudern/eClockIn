@@ -25,7 +25,7 @@ public class UpdateView extends JFrame {
 
     private StudentDao studentDao = new StudentDao();
 
-    //å¯åŠ¨ä¿®æ”¹ä¿¡æ¯
+    //Æô¶¯ĞŞ¸ÄĞÅÏ¢
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -39,12 +39,12 @@ public class UpdateView extends JFrame {
         });
     }
 
-    //åˆ›å»ºæ¡†æ¶
+    //´´½¨¿ò¼Ü
     public UpdateView(final int id) {
-        setTitle("ä¿®æ”¹ä¿¡æ¯");
+        setTitle("ĞŞ¸ÄĞÅÏ¢");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 443, 300);
-        setResizable(false); // ä¸å¯æ”¹å˜çª—å£å¤§å°
+        setResizable(false); // ²»¿É¸Ä±ä´°¿Ú´óĞ¡
         setLocationRelativeTo(null);
 
         contentPane = new JPanel();
@@ -52,7 +52,7 @@ public class UpdateView extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("å­¦å·ï¼š");
+        JLabel lblNewLabel = new JLabel("Ñ§ºÅ£º");
         lblNewLabel.setBounds(112, 40, 43, 15);
         contentPane.add(lblNewLabel);
 
@@ -61,7 +61,7 @@ public class UpdateView extends JFrame {
         contentPane.add(stunoText);
         stunoText.setColumns(10);
 
-        JLabel lblNewLabel_1 = new JLabel("å¯†ç ï¼š");
+        JLabel lblNewLabel_1 = new JLabel("ÃÜÂë£º");
         lblNewLabel_1.setBounds(112, 70, 43, 15);
         contentPane.add(lblNewLabel_1);
 
@@ -70,7 +70,7 @@ public class UpdateView extends JFrame {
         contentPane.add(passwordText);
         passwordText.setColumns(10);
 
-        JLabel lblNewLabel_2 = new JLabel("å§“åï¼š");
+        JLabel lblNewLabel_2 = new JLabel("ĞÕÃû£º");
         lblNewLabel_2.setBounds(112, 100, 43, 15);
         contentPane.add(lblNewLabel_2);
 
@@ -79,7 +79,7 @@ public class UpdateView extends JFrame {
         contentPane.add(nameText);
         nameText.setColumns(10);
 
-        JLabel lblNewLabel_3 = new JLabel("ç­çº§ï¼š");
+        JLabel lblNewLabel_3 = new JLabel("°à¼¶£º");
         lblNewLabel_3.setBounds(111, 130, 43, 15);
         contentPane.add(lblNewLabel_3);
 
@@ -88,8 +88,8 @@ public class UpdateView extends JFrame {
         contentPane.add(gradeText);
         gradeText.setColumns(10);
 
-        //ä¿å­˜
-        JButton saveBtn = new JButton("ä¿å­˜");
+        //±£´æ
+        JButton saveBtn = new JButton("±£´æ");
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
@@ -98,19 +98,19 @@ public class UpdateView extends JFrame {
                 String name = nameText.getText();
                 String grade = gradeText.getText();
                 if (stuno == null || "".equals(stuno)) {
-                    JOptionPane.showMessageDialog(contentPane, "è¯·è¾“å…¥å­¦å·", "ç³»ç»Ÿæç¤º", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "ÇëÊäÈëÑ§ºÅ", "ÏµÍ³ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if (password == null || "".equals(password)) {
-                    JOptionPane.showMessageDialog(contentPane, "è¯·è¾“å…¥å¯†ç ", "ç³»ç»Ÿæç¤º", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "ÇëÊäÈëÃÜÂë", "ÏµÍ³ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if (name == null || "".equals(name)) {
-                    JOptionPane.showMessageDialog(contentPane, "è¯·è¾“å…¥å§“å", "ç³»ç»Ÿæç¤º", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "ÇëÊäÈëĞÕÃû", "ÏµÍ³ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if (grade == null || "".equals(grade)) {
-                    JOptionPane.showMessageDialog(contentPane, "è¯·è¾“å…¥ç­çº§", "ç³»ç»Ÿæç¤º", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "ÇëÊäÈë°à¼¶", "ÏµÍ³ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 Student student = new Student();
@@ -122,9 +122,9 @@ public class UpdateView extends JFrame {
                 boolean flag = studentDao.update(student);
                 if (flag) {
                     dispose();
-                    JOptionPane.showMessageDialog(contentPane, "ä¿®æ”¹æˆåŠŸï¼Œåˆ·æ–°å¯æŸ¥çœ‹!");
+                    JOptionPane.showMessageDialog(contentPane, "ĞŞ¸Ä³É¹¦£¬Ë¢ĞÂ¿É²é¿´!");
                 } else {
-                    JOptionPane.showMessageDialog(contentPane, "æ“ä½œå¤±è´¥", "ç³»ç»Ÿæç¤º", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(contentPane, "²Ù×÷Ê§°Ü", "ÏµÍ³ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
                 }
                 return;
 
@@ -134,8 +134,8 @@ public class UpdateView extends JFrame {
         saveBtn.setBounds(151, 180, 74, 23);
         contentPane.add(saveBtn);
 
-        //å–æ¶ˆ
-        JButton cancleBtn = new JButton("å–æ¶ˆ");
+        //È¡Ïû
+        JButton cancleBtn = new JButton("È¡Ïû");
         cancleBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
@@ -144,7 +144,7 @@ public class UpdateView extends JFrame {
         cancleBtn.setBounds(237, 180, 74, 23);
         contentPane.add(cancleBtn);
 
-        //æ•°æ®å›æ˜¾
+        //Êı¾İ»ØÏÔ
         Student student = studentDao.getById(id);
         stunoText.setText(student.getStuno());
         passwordText.setText(student.getPassword());

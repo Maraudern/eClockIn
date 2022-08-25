@@ -3,17 +3,17 @@ package com.eclockin.entity;
 import java.util.Date;
 
 /**
- * å­¦ç”Ÿå®ä½“ç±»
+ * Ñ§ÉúÊµÌåÀà
  */
 public class Student {
 
-    private Integer id;//å­¦ç”ŸID
-    private String stuno;//å­¦å·
-    private String password;//å¯†ç 
-    private String name;//å§“å
-    private String grade;//ç­çº§
-    private Date creatTime;//æ·»åŠ æ—¶é—´
-    private Date updateTime;//ä¿®æ”¹æ—¶é—´
+    private Integer id;//Ñ§ÉúID
+    private String stuno;//Ñ§ºÅ
+    private String password;//ÃÜÂë
+    private String name;//ĞÕÃû
+    private String grade;//°à¼¶
+    private Date creatTime;//Ìí¼ÓÊ±¼ä
+    private Date updateTime;//ĞŞ¸ÄÊ±¼ä
 
     public Integer getId() {
         return id;
