@@ -18,7 +18,7 @@ import com.eclockin.entity.Student;
 public class AddView extends JFrame {
 
     private JPanel contentPane;
-    private JTextField stunoText;
+    private JTextField idText;
     private JTextField passwordText;
     private JTextField nameText;
     private JTextField gradeText;
@@ -30,7 +30,7 @@ public class AddView extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    AddView frame = new AddView(0);
+                    AddView frame = new AddView("调试");
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -40,12 +40,8 @@ public class AddView extends JFrame {
     }
 
     //创建框架
-    public AddView(final int i) {
-        if (i == 0) {
-            setTitle("学生添加");
-        } else if (i == 1) {
-            setTitle("注册账号");
-        }
+    public AddView(String title) {
+            setTitle(title);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 443, 300);
         setResizable(false); // 不可改变窗口大小
@@ -60,10 +56,10 @@ public class AddView extends JFrame {
         lblNewLabel.setBounds(112, 40, 43, 15);
         contentPane.add(lblNewLabel);
 
-        stunoText = new JTextField();
-        stunoText.setBounds(151, 37, 160, 21);
-        contentPane.add(stunoText);
-        stunoText.setColumns(10);
+        idText = new JTextField();
+        idText.setBounds(151, 37, 160, 21);
+        contentPane.add(idText);
+        idText.setColumns(10);
 
         JLabel lblNewLabel_1 = new JLabel("密码：");
         lblNewLabel_1.setBounds(112, 70, 43, 15);
@@ -97,11 +93,11 @@ public class AddView extends JFrame {
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                String stuno = stunoText.getText();
+                String id = String.valueOf(idText.getText());
                 String password = passwordText.getText();
                 String name = nameText.getText();
                 String grade = gradeText.getText();
-                if (stuno == null || "".equals(stuno)) {
+                if (id == null || "".equals(id)) {
                     JOptionPane.showMessageDialog(contentPane, "请输入学号", "系统提示", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
@@ -119,7 +115,7 @@ public class AddView extends JFrame {
                 }
                 Student student = new Student();
                 student.setPassword(password);
-                student.setStuno(stuno);
+                student.setId(id);
                 student.setName(name);
                 student.setGrade(grade);
                 boolean flag = studentDao.save(student);

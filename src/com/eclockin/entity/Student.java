@@ -7,28 +7,19 @@ import java.util.Date;
  */
 public class Student {
 
-    private Integer id;//学生ID
-    private String stuno;//学号
+    private String id;//学生ID
     private String password;//密码
     private String name;//姓名
     private String grade;//班级
     private Date creatTime;//添加时间
     private Date updateTime;//修改时间
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public String getStuno() {
-        return stuno;
-    }
-
-    public void setStuno(String stuno) {
-        this.stuno = stuno;
     }
 
     public String getPassword() {

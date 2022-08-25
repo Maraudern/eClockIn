@@ -18,29 +18,15 @@ import com.eclockin.entity.Student;
 public class UpdateView extends JFrame {
 
     private JPanel contentPane;
-    private JTextField stunoText;
+    private JTextField idText;
     private JTextField passwordText;
     private JTextField nameText;
     private JTextField gradeText;
 
     private StudentDao studentDao = new StudentDao();
 
-    //启动修改信息
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    UpdateView frame = new UpdateView(1);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
     //创建框架
-    public UpdateView(final int id) {
+    public UpdateView(final String id) {
         setTitle("修改信息");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 443, 300);
@@ -56,10 +42,10 @@ public class UpdateView extends JFrame {
         lblNewLabel.setBounds(112, 40, 43, 15);
         contentPane.add(lblNewLabel);
 
-        stunoText = new JTextField();
-        stunoText.setBounds(151, 37, 160, 21);
-        contentPane.add(stunoText);
-        stunoText.setColumns(10);
+        idText = new JTextField();
+        idText.setBounds(151, 37, 160, 21);
+        contentPane.add(idText);
+        idText.setColumns(10);
 
         JLabel lblNewLabel_1 = new JLabel("密码：");
         lblNewLabel_1.setBounds(112, 70, 43, 15);
@@ -93,7 +79,7 @@ public class UpdateView extends JFrame {
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                String stuno = stunoText.getText();
+                String stuno = idText.getText();
                 String password = passwordText.getText();
                 String name = nameText.getText();
                 String grade = gradeText.getText();
@@ -116,7 +102,6 @@ public class UpdateView extends JFrame {
                 Student student = new Student();
                 student.setId(id);
                 student.setPassword(password);
-                student.setStuno(stuno);
                 student.setName(name);
                 student.setGrade(grade);
                 boolean flag = studentDao.update(student);
@@ -146,7 +131,7 @@ public class UpdateView extends JFrame {
 
         //数据回显
         Student student = studentDao.getById(id);
-        stunoText.setText(student.getStuno());
+        idText.setText(student.getId());
         passwordText.setText(student.getPassword());
         nameText.setText(student.getName());
         gradeText.setText(student.getGrade());

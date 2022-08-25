@@ -1,54 +1,69 @@
 package com.eclockin.ui;
 
+import com.eclockin.entity.ClockIn;
+import com.eclockin.entity.Student;
+import com.eclockin.util.JDBCUtils;
+
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.*;
+
+import com.eclockin.dao.StudentDao;
+import com.eclockin.entity.Student;
 
 public class MainFrame extends JFrame {
-    public MainFrame(String title) {
-        this.setTitle(title);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 关闭即退出
-        this.setSize(360, 750); // 设置宽高
-        this.setResizable(false); // 不可改变窗口大小
-        this.setLocationRelativeTo(null); // 默认居中显示
-        JPanel rootPanel = new JPanel();
-        rootPanel.setLayout(null);
-        rootPanel.setBounds(0, 200, 360, 750);
-        rootPanel.setOpaque(true); // 背景设为不透明
-        rootPanel.setBackground(Color.white); // 背景白色
-        rootPanel.setForeground(Color.black); // 前景黑色
-        rootPanel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-        this.setContentPane(rootPanel); // 添加根容器到窗口
 
-        JMenuBar menuBar1 = new JMenuBar();
-        this.setJMenuBar(menuBar1);
-        JMenu menu1 = new JMenu("菜单");
-        menuBar1.add(menu1);
-        JMenuItem menuItem1 = new JMenuItem("历史记录");
-        JMenuItem menuItem2 = new JMenuItem("退出登录");
-        JMenuItem menuItem3 = new JMenuItem("账号管理");
-        menu1.add(menuItem1);
-        menu1.add(menuItem2);
-        menu1.add(menuItem3);
-        menu1.setBounds(0, 0, 360, 20);
-        menuItem2.addActionListener((e)->{
-            new LoginFrame("登录");
+    public static void main(String[] args) {
+        new MainFrame();
+    }
+
+    private JPanel contentPane;
+    private StudentDao studentDao = new StudentDao();
+
+    public MainFrame() {
+
+        this.setTitle("E打卡");
+        this.setResizable(false); // 不可改变窗口大小
+        this.setSize(360, 750); // 设置宽高
+        this.setLocationRelativeTo(null); // 默认居中显示
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 关闭即退出
+
+        contentPane = new JPanel();
+        contentPane.setLayout(null);
+        contentPane.setBounds(0, 200, 360, 750);
+        contentPane.setOpaque(true); // 背景设为不透明
+        contentPane.setBackground(Color.white); // 背景白色
+        contentPane.setForeground(Color.black); // 前景黑色
+        setContentPane(contentPane); // 添加根容器到窗口
+
+        JMenuBar menuBar = new JMenuBar();
+        this.setJMenuBar(menuBar);
+        JMenu menu = new JMenu("菜单");
+        menuBar.add(menu);
+        JMenuItem menuItem = new JMenuItem("历史记录");
+        JMenuItem menuItem_1 = new JMenuItem("账号管理");
+        JMenuItem menuItem_2 = new JMenuItem("退出登录");
+        menu.add(menuItem);
+        menu.add(menuItem_1);
+        menu.add(menuItem_2);
+        menu.setBounds(0, 0, 360, 20);
+        menuItem.addActionListener((e) -> {
+            new HistoryFrame();
             this.dispose();
         });
-        menuItem3.addActionListener((e)->{
-            new UserListView();
+        menuItem_1.addActionListener((e) -> {
+            UserListView frame = new UserListView();
+            frame.setVisible(true);
+            this.dispose();
+        });
+        menuItem_2.addActionListener((e) -> {
+            new LoginFrame();
             this.dispose();
         });
 
@@ -59,7 +74,7 @@ public class MainFrame extends JFrame {
         label1.setVerticalAlignment(0); // 垂直居中对齐
         label1.setFont(new Font("微软雅黑", Font.BOLD, 14));
         label1.setBounds(0, 0, 360, 30);
-        rootPanel.add(label1);
+        contentPane.add(label1);
 
         // 基本信息
         JLabel label2 = new JLabel();
@@ -102,19 +117,19 @@ public class MainFrame extends JFrame {
         JTextField textField5 = new JTextField();
         textField5.setBounds(110, 200, 230, 30);
 
-        rootPanel.add(label2);
-        rootPanel.add(label3);
-        rootPanel.add(label4);
-        rootPanel.add(label5);
-        rootPanel.add(label6);
-        rootPanel.add(label7);
-        rootPanel.add(label8);
-        rootPanel.add(textField1);
-        rootPanel.add(textField2);
-        rootPanel.add(textField3);
-        rootPanel.add(textField4);
-        rootPanel.add(comboBox1);
-        rootPanel.add(textField5);
+        contentPane.add(label2);
+        contentPane.add(label3);
+        contentPane.add(label4);
+        contentPane.add(label5);
+        contentPane.add(label6);
+        contentPane.add(label7);
+        contentPane.add(label8);
+        contentPane.add(textField1);
+        contentPane.add(textField2);
+        contentPane.add(textField3);
+        contentPane.add(textField4);
+        contentPane.add(comboBox1);
+        contentPane.add(textField5);
 
         // 今日健康信息
         JLabel label9 = new JLabel();
@@ -165,19 +180,19 @@ public class MainFrame extends JFrame {
         checkBox7.setBounds(10, 580, 350, 30);
         checkBox7.setBackground(Color.white);
 
-        rootPanel.add(label9);
-        rootPanel.add(label10);
-        rootPanel.add(radioButton1);
-        rootPanel.add(radioButton2);
-        rootPanel.add(radioButton3);
-        rootPanel.add(label11);
-        rootPanel.add(checkBox1);
-        rootPanel.add(checkBox2);
-        rootPanel.add(checkBox3);
-        rootPanel.add(checkBox4);
-        rootPanel.add(checkBox5);
-        rootPanel.add(checkBox6);
-        rootPanel.add(checkBox7);
+        contentPane.add(label9);
+        contentPane.add(label10);
+        contentPane.add(radioButton1);
+        contentPane.add(radioButton2);
+        contentPane.add(radioButton3);
+        contentPane.add(label11);
+        contentPane.add(checkBox1);
+        contentPane.add(checkBox2);
+        contentPane.add(checkBox3);
+        contentPane.add(checkBox4);
+        contentPane.add(checkBox5);
+        contentPane.add(checkBox6);
+        contentPane.add(checkBox7);
 
         // 真实性承诺
         JLabel label12 = new JLabel();
@@ -189,19 +204,38 @@ public class MainFrame extends JFrame {
         checkBox8.setBounds(10, 630, 350, 30);
         checkBox8.setBackground(Color.white);
 
-        rootPanel.add(label12);
-        rootPanel.add(checkBox8);
+        contentPane.add(label12);
+        contentPane.add(checkBox8);
 
         // 提交
         JButton button1 = new JButton("提交");
         button1.setBounds(150, 660, 60, 25);
         button1.setEnabled(false);
-
+        button1.addActionListener((e) -> {
+            ClockIn clockIn = new ClockIn();
+            clockIn.setName(textField1.getText());
+            clockIn.setId(textField2.getText());
+            clockIn.setDate(new Date());
+            if (radioButton1.isSelected()) {
+                clockIn.setTmp("体温37℃以下");
+            } else if (radioButton2.isSelected()) {
+                clockIn.setTmp("体温37℃~37.2℃");
+            } else if (radioButton3.isSelected()) {
+                clockIn.setTmp("体温7.2℃以上");
+            }
+            boolean flag = studentDao.saveClock(clockIn);
+            if (flag) {
+                JOptionPane.showMessageDialog(contentPane, "提交成功！");
+            } else {
+                JOptionPane.showMessageDialog(contentPane, "学号不正确或信息未填写完整！", "系统提示", JOptionPane.WARNING_MESSAGE);
+            }
+            return;
+        });
         checkBox8.addActionListener((e) -> {
             button1.setEnabled(checkBox8.isSelected());
         });
 
-        rootPanel.add(button1);
+        contentPane.add(button1);
         this.setVisible(true);
     }
 }
