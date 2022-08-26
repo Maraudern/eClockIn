@@ -56,7 +56,7 @@ public class UserListView extends JFrame {
         setLocationRelativeTo(null);
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                new MainFrame();
+                new LoginFrame();
             }
         });
 

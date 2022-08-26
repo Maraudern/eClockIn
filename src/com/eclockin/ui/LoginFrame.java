@@ -29,6 +29,21 @@ public class LoginFrame extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane); // 添加根容器到窗口
 
+        JMenuBar menuBar = new JMenuBar();
+        this.setJMenuBar(menuBar);
+        JMenu menu = new JMenu("菜单");
+        menuBar.add(menu);
+        JMenuItem menuItem_1 = new JMenuItem("账号管理");
+        menu.add(menuItem_1);
+        menu.setBounds(0, 0, 360, 20);
+
+        menuItem_1.addActionListener((e) -> {
+            UserListView frame = new UserListView();
+            frame.setVisible(true);
+            this.dispose();
+        });
+
+
         JLabel lblNewLabel = new JLabel("学号:");
         lblNewLabel.setBounds(60, 30, 43, 15);
 

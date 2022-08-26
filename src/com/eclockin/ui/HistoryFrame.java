@@ -45,6 +45,7 @@ public class HistoryFrame extends JFrame{
             data[i][3] = clockIn.getTmp();
         }
         JTable JT = new JTable(data, index);//创建表格，第一个参数为显示的数据（数组），第二个数组是表格的第一行文字
+        JT.setEnabled(false);
         //VERTICAL_SCROLLBAR_AS_NEEDED纵向,HORIZONTAL_SCROLLBAR_AS_NEEDED横向
         JScrollPane JS = new JScrollPane(JT, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

@@ -47,19 +47,12 @@ public class MainFrame extends JFrame {
         JMenu menu = new JMenu("菜单");
         menuBar.add(menu);
         JMenuItem menuItem = new JMenuItem("历史记录");
-        JMenuItem menuItem_1 = new JMenuItem("账号管理");
         JMenuItem menuItem_2 = new JMenuItem("退出登录");
         menu.add(menuItem);
-        menu.add(menuItem_1);
         menu.add(menuItem_2);
         menu.setBounds(0, 0, 360, 20);
         menuItem.addActionListener((e) -> {
             new HistoryFrame();
-            this.dispose();
-        });
-        menuItem_1.addActionListener((e) -> {
-            UserListView frame = new UserListView();
-            frame.setVisible(true);
             this.dispose();
         });
         menuItem_2.addActionListener((e) -> {

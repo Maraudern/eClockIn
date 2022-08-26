@@ -41,7 +41,7 @@ public class AddView extends JFrame {
 
     //创建框架
     public AddView(String title) {
-            setTitle(title);
+        setTitle(title);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 443, 300);
         setResizable(false); // 不可改变窗口大小
